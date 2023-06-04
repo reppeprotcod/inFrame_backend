@@ -13,6 +13,10 @@ class PostController {
             const {description} = req.body;
             const {photo} = req.files;
 
+            const dir = './post_photos';
+            if (!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+            }
             const photoSplit = photo.name.split('.');
             photo.name = `${uuid()}.${photoSplit[photoSplit.length - 1]}`;
             photo.mv('./post_photos/' + photo.name);

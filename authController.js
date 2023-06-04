@@ -47,6 +47,10 @@ class AuthController {
                 }
             }
             else {
+                const dir = './user_photos';
+                if (!fs.existsSync(dir)){
+                    fs.mkdirSync(dir);
+                }
                 const parts = user_photo.name.split('.');
                 user_photo.name = user_id + '.' + parts[parts.length - 1];
                 user_photo.mv('./user_photos/' + user_photo.name);
@@ -130,6 +134,10 @@ class AuthController {
             const {user_photo} = req.files;
             let user = await User.findOne({where: {user_id: req.user.id}});
             const parts = user_photo.name.split('.');
+            const dir = './user_photos';
+            if (!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+            }
             user_photo.name = user.user_id + '.' + parts[parts.length - 1];
             user_photo.mv('./user_photos/' + user_photo.name);
             user.user_photo = user_photo.name;
