@@ -5,6 +5,7 @@ const config = require('config');
 const User = require('./models/User');
 const Role = require('./models/Role');
 const UserSettings = require('./models/UserSettings');
+const fs = require('fs');
 const { uuid } = require('uuidv4');
 const { where } = require('sequelize');
 
