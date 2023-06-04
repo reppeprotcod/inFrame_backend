@@ -9,7 +9,7 @@ const NotificationComment =  sequelize.define('notifications_comments', {
     },
     is_read: {
         type: DataTypes.BOOLEAN,
-        defaultValue: 0,
+        defaultValue: false,
         allowNull: false
     }
 });

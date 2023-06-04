@@ -9,7 +9,7 @@ const NotificationRepost =  sequelize.define('notifications_reposts', {
     },
     is_read: {
         type: DataTypes.BOOLEAN,
-        defaultValue: 0,
+        defaultValue: false,
         allowNull: false
     }
 });

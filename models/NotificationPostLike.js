@@ -9,7 +9,7 @@ const NotificationPostLike =  sequelize.define('notifications_likes', {
     },
     is_read: {
         type: DataTypes.BOOLEAN,
-        defaultValue: 0,
+        defaultValue: false,
         allowNull: false
     }
 });
