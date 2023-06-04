@@ -1,0 +1,4 @@
+/node_modules
+/post_photos
+/user_photos
+/config/*.json
