@@ -70,7 +70,9 @@ class PostController {
             const user = await User.findOne({where: {user_id: req.user.id}});
             const userRole = await Role.findOne({where: {role_id: user.role_id}});
             if(post.user_id === req.user.id || userRole.role_title === "admin") {
-                fs.unlinkSync(`./post_photos/${post.photo}`);
+                if (!fs.existsSync(`./post_photos/${post.photo}`)){
+                    fs.unlinkSync(`./post_photos/${post.photo}`);
+                }
                 await Post.destroy({where: {post_id: req.params.id}});
                 res.status(200).json({message: "Пост удалён"});
             }
