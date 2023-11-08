@@ -15,7 +15,7 @@ app.use(fileUpload());
 app.use(express.json());
 app.use('/inFrame', router);
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.get('port') || 5000;
 
 async function start(){
     try {

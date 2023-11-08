@@ -10,7 +10,7 @@ const Subscription = sequelize.define('subscriptions', {
     },
     subscription_status: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: 0,
         allowNull: false
     }
 });

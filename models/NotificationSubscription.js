@@ -9,12 +9,12 @@ const NotificationSubscription =  sequelize.define('notifications_subscriptions'
     },
     is_read: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: 0,
         allowNull: false
     },
     is_allowed: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: 0,
         allowNull: false
     }
 });

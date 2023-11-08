@@ -2,9 +2,9 @@ const config = require('config');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
-    process.env.db_name, process.env.user, process.env.password, {
-        dialect: process.env.dialect,
-        host: process.env.db_host
+    config.get('db_name'), config.get('user'), config.get('password'), {
+        dialect: config.get('dialect'),
+        host: config.get('db_host')
     }
 );
 

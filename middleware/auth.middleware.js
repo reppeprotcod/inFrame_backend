@@ -11,7 +11,7 @@ function authMiddleware(req, res, next) {
             return res.status(400).json({message: "No authorization"});
         }
 
-        const decoded = jwt.verify(token, process.env.secret);
+        const decoded = jwt.verify(token, config.get('secret'));
         req.user = decoded;
         next();
     } catch (e) {

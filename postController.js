@@ -13,10 +13,6 @@ class PostController {
             const {description} = req.body;
             const {photo} = req.files;
 
-            const dir = './post_photos';
-            if (!fs.existsSync(dir)){
-                fs.mkdirSync(dir);
-            }
             const photoSplit = photo.name.split('.');
             photo.name = `${uuid()}.${photoSplit[photoSplit.length - 1]}`;
             photo.mv('./post_photos/' + photo.name);
@@ -70,9 +66,7 @@ class PostController {
             const user = await User.findOne({where: {user_id: req.user.id}});
             const userRole = await Role.findOne({where: {role_id: user.role_id}});
             if(post.user_id === req.user.id || userRole.role_title === "admin") {
-                if (fs.existsSync(`./post_photos/${post.photo}`)){
-                    fs.unlinkSync(`./post_photos/${post.photo}`);
-                }
+                fs.unlinkSync(`./post_photos/${post.photo}`);
                 await Post.destroy({where: {post_id: req.params.id}});
                 res.status(200).json({message: "Пост удалён"});
             }

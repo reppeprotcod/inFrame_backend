@@ -44,7 +44,7 @@ class SubscriptionController {
         try {
             const subscription = await Subscription.findOne({where: {subscription_id: req.params.id}});
             if(subscription) {
-                await Subscription.destroy({where: {subscription_id: req.params.id}});
+                await Subscription.destroy({where: {subscription_id: subscription.subscription_id}});
                 res.status(200).json({ message: "subscription deleted" });
             }
             else {

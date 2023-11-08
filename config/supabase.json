@@ -1,0 +1,9 @@
+{
+    "port": 5000,
+    "db_host": "db.jfkeyvktzcdbrdogwstz.supabase.co",
+    "db_name": "postgres",
+    "user": "postgres",
+    "password": "iI31d7okWvyH5QB3",
+    "dialect": "postgres",
+    "secret": "inFrame"
+}

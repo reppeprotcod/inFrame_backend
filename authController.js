@@ -5,7 +5,6 @@ const config = require('config');
 const User = require('./models/User');
 const Role = require('./models/Role');
 const UserSettings = require('./models/UserSettings');
-const fs = require('fs');
 const { uuid } = require('uuidv4');
 const { where } = require('sequelize');
 
@@ -13,7 +12,7 @@ const generateAccessToken = (id) => {
     const payload = {
         id
     }
-    return jwt.sign(payload, process.env.secret, {expiresIn: '24h'});
+    return jwt.sign(payload, config.get('secret'), {expiresIn: '24h'});
 }
 
 class AuthController {
@@ -48,10 +47,6 @@ class AuthController {
                 }
             }
             else {
-                const dir = './user_photos';
-                if (!fs.existsSync(dir)){
-                    fs.mkdirSync(dir);
-                }
                 const parts = user_photo.name.split('.');
                 user_photo.name = user_id + '.' + parts[parts.length - 1];
                 user_photo.mv('./user_photos/' + user_photo.name);
@@ -135,10 +130,6 @@ class AuthController {
             const {user_photo} = req.files;
             let user = await User.findOne({where: {user_id: req.user.id}});
             const parts = user_photo.name.split('.');
-            const dir = './user_photos';
-            if (!fs.existsSync(dir)){
-                fs.mkdirSync(dir);
-            }
             user_photo.name = user.user_id + '.' + parts[parts.length - 1];
             user_photo.mv('./user_photos/' + user_photo.name);
             user.user_photo = user_photo.name;
